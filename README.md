@@ -1,62 +1,60 @@
-<h1 align="center">REAN-PRO</h1>
-
-<p align="center">
-Laravel API • Web Development • Programming Tutorials
-</p>
-
-<p align="center">
-Sharing knowledge about Laravel API, PHP, MySQL, Vue.js, and real-world projects.
-</p>
 
 ---
 
-## 📚 About
+# Choice 2 — Modern Developer Style 🔥
 
-Welcome to REAN-PRO 👋
+```md
+<div align="center">
 
-This repository is created to share practical programming knowledge and real project tutorials focused on:
+# 🚀 REAN-PRO
 
-- Laravel API Development
-- PHP & MySQL
-- Authentication with Passport & Sanctum
-- POS Systems
-- RESTful API
-- Vue.js Frontend
-- Backend Architecture
-- Clean Code Practices
+### Learn • Build • Share
+
+Laravel API Tutorials & Real-World Projects
+
+</div>
 
 ---
 
-## 🎥 YouTube Channels
+## 👨‍💻 About Me
 
-- 🇺🇸 English Channel  
-  [JoinCoder YouTube Channel](https://www.youtube.com/@joincoder?utm_source=chatgpt.com)
+Hi, I'm Bong Map 👋
 
-- 🇰🇭 Khmer Channel  
-  [REAN Programming YouTube Channel](https://www.youtube.com/@reanprogramming?utm_source=chatgpt.com)
+I create educational content about:
 
----
-
-## 🌐 Social Media
-
-- 🌍 Website: [REAN-PRO Website](https://reanprogramming.com?utm_source=chatgpt.com)
-- 💻 GitHub: [REAN Programming GitHub](https://github.com/reanprogramming?utm_source=chatgpt.com)
-- 📘 Facebook: [REAN Programming Facebook](https://www.facebook.com/reanprogramming?utm_source=chatgpt.com)
-- 📢 Telegram: [REAN Documentary Telegram](https://t.me/reandocumentary?utm_source=chatgpt.com)
-- 🎵 TikTok Khmer: [REAN Programming TikTok](https://www.tiktok.com/@reanprogramming?utm_source=chatgpt.com)
-- 🎵 TikTok English: [SourceCode TikTok](https://www.tiktok.com/@sourcecode?utm_source=chatgpt.com)
+✅ Laravel API  
+✅ PHP Development  
+✅ Authentication System  
+✅ POS System  
+✅ MySQL Database  
+✅ Vue.js  
+✅ Backend Development  
 
 ---
 
-## 🛠️ Technologies
+# 📺 Content Platforms
 
-```bash
-Laravel
-PHP
-MySQL
-Vue.js
-REST API
-Bootstrap
-JWT
-Passport
-Sanctum
+| Platform | Link |
+|---|---|
+| 🌍 Website | [REAN-PRO Website](https://reanprogramming.com?utm_source=chatgpt.com) |
+| 💻 GitHub | [REAN Programming GitHub](https://github.com/reanprogramming?utm_source=chatgpt.com) |
+| 🇺🇸 YouTube English | [JoinCoder YouTube Channel](https://www.youtube.com/@joincoder?utm_source=chatgpt.com) |
+| 🇰🇭 YouTube Khmer | [REAN Programming YouTube Channel](https://www.youtube.com/@reanprogramming?utm_source=chatgpt.com) |
+| 📘 Facebook | [REAN Programming Facebook](https://www.facebook.com/reanprogramming?utm_source=chatgpt.com) |
+| 📢 Telegram | [REAN Documentary Telegram](https://t.me/reandocumentary?utm_source=chatgpt.com) |
+| 🎵 TikTok | [REAN Programming TikTok](https://www.tiktok.com/@reanprogramming?utm_source=chatgpt.com) |
+
+---
+
+## 📦 Featured Topics
+
+```txt
+Laravel 11 API
+Laravel Passport
+Laravel Sanctum
+Authentication API
+RESTful API
+POS System
+Inventory System
+Hospital Management System
+Vue.js Frontend

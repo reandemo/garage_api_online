@@ -1,11 +1,3 @@
-
----
-
-# Choice 2 — Modern Developer Style 🔥
-
-```md
-<div align="center">
-
 # 🚀 REAN-PRO
 
 ### Learn • Build • Share

@@ -11,8 +11,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
 
-#[Fillable(['name', 'email', 'password'])]
-#[Hidden(['password', 'remember_token'])]
+#[Fillable(['user_id','branch_code','user_login', 'email', 'password'])]
+#[Hidden(['password', 'remember_token','updated_at','created_at'])]
 class User extends Authenticatable
 {
     /** @use HasFactory<UserFactory> */

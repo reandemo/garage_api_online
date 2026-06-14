@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\tbl_branches as Branch;
+use App\Models\BranchStore as Branch;
 use App\Models\tbl_systems as System;
 
 class BranchesSeeder extends Seeder
@@ -17,39 +17,39 @@ class BranchesSeeder extends Seeder
         $system = System::first();
         
         $branch = new Branch();
-        $branch->branch_code = '0003';
-        $branch->subofbranch = '1000';
-        $branch->short_name = 'C0D';
+        $branch->branchcode = '0101';
+        $branch->subofbranch = '0001';
+        $branch->short_name = 'CODING';
         $branch->main_branch = '1';
-        $branch->slogan = 'Work hard. Drink coffee';
-        $branch->name = 'C0FFEE AND C0DING';
-        $branch->system_id = $system->id;
+        $branch->slogan = 'Building software today that solves problems tomorrow';
+        $branch->branch_name = 'REAN-Programming Co., Ltd';
+        $branch->system_id = '1';
         $branch->active = '1';
         $branch->save();
 
         $branch = new Branch();
-        $branch->branch_code = '0001';
-        $branch->subofbranch = '2000';
-        $branch->short_name = 'C0D';
+        $branch->branchcode = '0201';
+        $branch->subofbranch = '0002';
+        $branch->short_name = 'TC';
         $branch->main_branch = '0';
-        $branch->slogan = 'Work hard. Drink coffee';
-        $branch->name = 'C0FFEE AND C0DING';
-        $branch->phone = '012 500 339';
+        $branch->slogan = 'Trust the hands that understand your vehicle.';
+        $branch->branch_name = 'TC AUTO';
+        $branch->phone = '010 322 022';
         $branch->address = 'Phnom penh they Sen Sok';
-        $branch->system_id = $system->id;
+        $branch->system_id = '2';
         $branch->active = '1';
         $branch->save();
 
         $branch = new Branch();
-        $branch->branch_code = '0002';
-        $branch->subofbranch = '3000';
-        $branch->short_name = 'MOT';
+        $branch->branchcode = '0301';
+        $branch->subofbranch = '0003';
+        $branch->short_name = 'SAVADA';
         $branch->main_branch = '0';
-        $branch->slogan = 'Your Coffee. Your Way';
-        $branch->name = 'C0DE & Coffee';
-        $branch->phone = '010 500 313';
-        $branch->address = 'PP Wat Toul';
-        $branch->system_id = $system->id;
+        $branch->slogan = 'Arrive as a guest, leave as family.';
+        $branch->branch_name = 'Savada Resort Kep Thmey';
+        $branch->phone = '010 322 022';
+        $branch->address = 'Bokor National Park, Kep Thmey, Cambodia';
+        $branch->system_id = '3';
         $branch->active = '1';
         $branch->save();
     }

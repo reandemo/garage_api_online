@@ -15,13 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('user_id',20)->unique();
             $table->string('branchcode',20);
-            $table->string('user_login',202);
+            $table->string('user_login',200);
             $table->string('email',202)->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password',250);
-            $table->string('profile_id',10)->nullable();
             $table->boolean('active')->nullable();
-            $table->string('sysdoc',100)->nullable();
+            $table->string('profile_id',10)->nullable();
             $table->rememberToken();
             $table->string('inputter',250)->nullable();
             $table->softDeletes();

@@ -3,55 +3,66 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 
 class BaseController extends Controller
 {
-    //
-
-    public function loginerror($result, $message)
-    {
-    	$response = [
-            'success' => false,
-            'errors'    => $message,
-            'message' => $message,
-            'statusCode' =>'404'
-        ];
-        return response()->json($response, 200);
-    }
-    public function sendResponse($result, $message)
-    {
-    	$response = [
+    protected function success(
+        $data = null,
+        string $message = 'Success',
+        int $code = 200
+    ) {
+        return response()->json([
             'success' => true,
-            'data'    => $result,
             'message' => $message,
-            'statusCode' =>'200'
-        ];
-        return response()->json($response, 200);
+            'code' => $code,
+            'data' => $data,
+            'errors' => null,
+            'timestamp' => now()->toISOString(),
+        ], $code);
     }
 
-    public function sendError($error, $errorMessages = [], $code = 404)
-    {
-    	$response = [
+    protected function error(
+        string $message = 'Error',
+        $errors = null,
+        int $code = 500
+    ) {
+        return response()->json([
             'success' => false,
-            'message' => $error,
-            'statusCode'=> $code
-        ];
-        if(!empty($errorMessages)){
-            $response['data'] = $errorMessages;
-        }
-        return response()->json($response, $code);
-    }
-
-    public function sendResponseFile($result, $message)
-    {
-    	$response = [
-            'success' => true,
-            'data'    => $result,
             'message' => $message,
-            'statusCode' =>'200'
-        ];
-        return response()->json($response, 200);
+            'code' => $code,
+            'data' => null,
+            'errors' => $errors,
+            'timestamp' => now()->toISOString(),
+        ], $code);
     }
 
+    protected function validationError(
+        $errors
+    ) {
+        return $this->error(
+            'Validation failed',
+            $errors,
+            422
+        );
+    }
+
+    protected function unauthorized(
+        string $message = 'Unauthorized'
+    ) {
+        return $this->error(
+            $message,
+            null,
+            401
+        );
+    }
+
+    protected function notFound(
+        string $message = 'Record not found'
+    ) {
+        return $this->error(
+            $message,
+            null,
+            404
+        );
+    }
 }

@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
- use SoftDeletes;
+use SoftDeletes;
 
 class BranchStore extends Model
 {
@@ -54,4 +54,7 @@ class BranchStore extends Model
         'inputter'
 
     ];
+
+
+    
 }

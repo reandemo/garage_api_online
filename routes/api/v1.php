@@ -1,43 +1,71 @@
 <?php
 
-use App\Http\Controllers\Api\BranchesController;
 use App\Http\Controllers\Api\V1\AuthController;
-use App\Http\Controllers\Api\V1\ProductController;
-use App\Http\Controllers\Api\v1\StoreController;
+use App\Http\Controllers\Api\V1\ComboController;
+use App\Http\Controllers\Api\V1\StoreController;
 use Illuminate\Support\Facades\Route;
 
-Route::post('userloigin', [AuthController::class, 'userloigin']);
 
-Route::post('register', [AuthController::class, 'register']);
-Route::post('login', [AuthController::class, 'login']);
-Route::middleware('auth:api')->group(function () {
-    Route::get('products', [ProductController::class, 'index']);
-    Route::post('products', [ProductController::class, 'store']);
-    Route::get('products/{id}', [ProductController::class, 'show']);
-    Route::put('products/{id}', [ProductController::class, 'update']);
-    Route::delete('products/{id}', [ProductController::class, 'destroy']);
+/*
+|--------------------------------------------------------------------------
+| API Version 1
+|--------------------------------------------------------------------------
+| REAN-PRO Laravel API
+| Version: v1
+| Author: REAN PROGRAMMING
+|--------------------------------------------------------------------------
+*/
 
-});
+    // User Login
 
-Route::get('/users', function () {
-    return response()->json(['message' => 'This is the V1 users list']);
-});
+    Route::post('/login', [AuthController::class, 'login']);
+    Route::post('/register', [AuthController::class, 'register']);
 
-Route::prefix('setting')->middleware('auth:api')->group(function () {
-    // Branch
-    Route::controller(StoreController::class)->group(function () {
-        Route::post(
-            '/store/register','registerstore'
-        );
+    // Legacy Login (Optional)
+
+    Route::post('/user-login', [AuthController::class, 'userloigin']);
+
+    /*
+
+    |--------------------------------------------------------------------------
+
+    | Public Store Routes
+
+    |--------------------------------------------------------------------------
+
+    */
+
+    // Register New Store
+
+    Route::post('/store/register', [StoreController::class, 'registerstore']);
+
+    /*
+
+    |--------------------------------------------------------------------------
+
+    | Protected Routes
+
+    |--------------------------------------------------------------------------
+
+    */
+
+    Route::middleware('auth:api')->group(function () {
+
+        // Get Product List
+
+        // Current User Information
+
+        Route::get('/profile', [AuthController::class, 'profile']);
+
+        // Logout
+
+        Route::post('/logout', [AuthController::class, 'logout']);
+
     });
 
+    Route::prefix('setting')->middleware('auth:api')->group(function () {
+        Route::get('combo/{id}', [ComboController::class, 'combo']);
 });
-
-
-Route::post(
-    'store/register',
-    [StoreController::class, 'registerstore']
-);
 
 
 

@@ -2636,16 +2636,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "3.12.2",
+            "version": "3.12.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/CarbonPHP/carbon.git",
-                "reference": "5a09cc37e4349453c7777b102ce7648e9f36ba94"
+                "reference": "6e7853a668c3107294aff38d42bf760ec02126b6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/CarbonPHP/carbon/zipball/5a09cc37e4349453c7777b102ce7648e9f36ba94",
-                "reference": "5a09cc37e4349453c7777b102ce7648e9f36ba94",
+                "url": "https://api.github.com/repos/CarbonPHP/carbon/zipball/6e7853a668c3107294aff38d42bf760ec02126b6",
+                "reference": "6e7853a668c3107294aff38d42bf760ec02126b6",
                 "shasum": ""
             },
             "require": {
@@ -2737,7 +2737,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-06-14T16:57:45+00:00"
+            "time": "2026-06-14T20:41:42+00:00"
         },
         {
             "name": "nette/schema",
@@ -3317,16 +3317,16 @@
         },
         {
             "name": "phpseclib/phpseclib",
-            "version": "3.0.53",
+            "version": "3.0.55",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpseclib/phpseclib.git",
-                "reference": "511ddc8e352d5d1f1e33bea468b6f4ef48438cf9"
+                "reference": "db9744e6d47e742b1f974e965ad49bdd041105af"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/511ddc8e352d5d1f1e33bea468b6f4ef48438cf9",
-                "reference": "511ddc8e352d5d1f1e33bea468b6f4ef48438cf9",
+                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/db9744e6d47e742b1f974e965ad49bdd041105af",
+                "reference": "db9744e6d47e742b1f974e965ad49bdd041105af",
                 "shasum": ""
             },
             "require": {
@@ -3407,7 +3407,7 @@
             ],
             "support": {
                 "issues": "https://github.com/phpseclib/phpseclib/issues",
-                "source": "https://github.com/phpseclib/phpseclib/tree/3.0.53"
+                "source": "https://github.com/phpseclib/phpseclib/tree/3.0.55"
             },
             "funding": [
                 {
@@ -3423,7 +3423,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-06-09T18:08:26+00:00"
+            "time": "2026-06-14T23:24:10+00:00"
         },
         {
             "name": "psr/clock",
@@ -8303,16 +8303,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "12.5.29",
+            "version": "12.5.30",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "9aa66a47db3ea70f1a468e66dd969f67e594945a"
+                "reference": "900400a5b616d6fb306f9549f6da33ba615d3fbb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/9aa66a47db3ea70f1a468e66dd969f67e594945a",
-                "reference": "9aa66a47db3ea70f1a468e66dd969f67e594945a",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/900400a5b616d6fb306f9549f6da33ba615d3fbb",
+                "reference": "900400a5b616d6fb306f9549f6da33ba615d3fbb",
                 "shasum": ""
             },
             "require": {
@@ -8381,7 +8381,7 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
                 "security": "https://github.com/sebastianbergmann/phpunit/security/policy",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/12.5.29"
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/12.5.30"
             },
             "funding": [
                 {
@@ -8389,7 +8389,7 @@
                     "type": "other"
                 }
             ],
-            "time": "2026-06-04T06:14:42+00:00"
+            "time": "2026-06-15T13:12:30+00:00"
         },
         {
             "name": "sebastian/cli-parser",

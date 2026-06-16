@@ -17,16 +17,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
 
         User::factory()->create([
             'user_id' => 'USER001',
-            'name' => 'JOINCODER',
+            'user_login' => 'JOINCODER',
             'email' => 'JOINCODER@joincoder.com',
-            'branch_code' => 'BRANCH001',
+            'branchcode' => 'BRANCH001',
             'profile_id' => 'PROFILE001',
             'active' => true,
-            'sysdoc' => 'sysdoc001',
             'inputter' => 'JOINCODER',
             'password'=>'$2y$12$t/2s3Cf/6SYIMX6gyl.cxutnUBrJTOoirZ8fG3QuJQnHdliH7Pt6q',
 
@@ -34,8 +32,8 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\User::factory()->create([
             'user_id' => 'USER002',
-            'branch_code' => '0002',
-            'name' => 'joincoder',
+            'branchcode' => '0002',
+            'user_login' => 'joincoder',
             'email' => 'joincoder@gmail.com',
             'profile_id' => '1',
             'active' => '1',

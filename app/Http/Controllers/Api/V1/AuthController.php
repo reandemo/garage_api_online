@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Services\AuthService;
+use Illuminate\Foundation\Http\FormRequest;
 
 class AuthController extends Controller
 {
@@ -27,6 +28,7 @@ public function __construct(AuthService $authService)
 
     public function register(RegisterRequest $request)
     {
+        return $request;
         return $this->authService->register(
             $request->validated()
         );

@@ -2,49 +2,63 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Database\Seeders\BranchesSeeder;
-use Database\Seeders\SystemSeeder;
+use Illuminate\Support\Facades\Hash;
+use App\Models\User;
 
 class DatabaseSeeder extends Seeder
 {
-    use WithoutModelEvents;
-
     /**
      * Seed the application's database.
      */
     public function run(): void
     {
-
-        User::factory()->create([
-            'user_id' => 'USER001',
-            'user_login' => 'JOINCODER',
-            'email' => 'JOINCODER@joincoder.com',
-            'branchcode' => 'BRANCH001',
-            'profile_id' => 'PROFILE001',
-            'active' => true,
-            'inputter' => 'JOINCODER',
-            'password'=>'$2y$12$t/2s3Cf/6SYIMX6gyl.cxutnUBrJTOoirZ8fG3QuJQnHdliH7Pt6q',
-
+        // Seed Master Data
+        $this->call([
+            SystemSeeder::class,
+            BranchesSeeder::class,
         ]);
 
-        \App\Models\User::factory()->create([
-            'user_id' => 'USER002',
-            'branchcode' => '0002',
-            'user_login' => 'joincoder',
-            'email' => 'joincoder@gmail.com',
-            'profile_id' => '1',
-            'active' => '1',
-            'password'=>'$2y$12$t/2s3Cf/6SYIMX6gyl.cxutnUBrJTOoirZ8fG3QuJQnHdliH7Pt6q',
-            'inputter' => 'IT.SYSTEM'
-         ]);
+        // System Administrator
+        User::updateOrCreate(
+            ['user_id' => 'USER001'],
+            [
+                'user_login' => 'JOINCODER',
+                'email' => 'JOINCODER@gmail.com',
+                'branchcode' => '0101',
+                'profile_id' => 'ADMIN',
+                'isactive' => true,
+                'inputter' => 'IT.SYSTEM',
+                'password' => Hash::make('ABCabc123$$'),
+            ]
+        );
 
+        // Garage Administrator
+        User::updateOrCreate(
+            ['user_id' => 'USER002'],
+            [
+                'user_login' => 'GARAGE_ADMIN',
+                'email' => 'garage@gmail.com',
+                'branchcode' => '0201',
+                'profile_id' => 'ADMIN',
+                'isactive' => true,
+                'inputter' => 'IT.SYSTEM',
+                'password' => Hash::make('ABCabc123$$'),
+            ]
+        );
 
-
-        $this->call(SystemSeeder::class);
-        $this->call(BranchesSeeder::class);
-
+        // Coffee Administrator
+        User::updateOrCreate(
+            ['user_id' => 'USER003'],
+            [
+                'user_login' => 'COFFEE_ADMIN',
+                'email' => 'coffee@gmail.com',
+                'branchcode' => '0301',
+                'profile_id' => 'ADMIN',
+                'isactive' => true,
+                'inputter' => 'IT.SYSTEM',
+                'password' => Hash::make('ABCabc123$$'),
+            ]
+        );
     }
 }

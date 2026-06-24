@@ -28,7 +28,7 @@ return new class extends Migration
             $table->boolean('main_branch')->nullable()->comment('Primary Organization');
             $table->string('short_name')->nullable();
             $table->string('comment')->nullable();
-            $table->boolean('active')->nullable();
+            $table->boolean('isactive')->nullable();
             $table->string('slogan')->nullable();
             $table->string('inputter',250)->nullable();
 
@@ -44,8 +44,6 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('sys_branches');
-
-            
 
 
     }

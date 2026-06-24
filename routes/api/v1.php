@@ -1,72 +1,136 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\Api\V1\AuthController;
 use App\Http\Controllers\Api\V1\ComboController;
 use App\Http\Controllers\Api\V1\StoreController;
-use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Api\V1\ProductController;
+use App\Http\Controllers\Api\V1\CustomerController;
 
 /*
 |--------------------------------------------------------------------------
-| API Version 1
-|--------------------------------------------------------------------------
-| REAN-PRO Laravel API
-| Version: v1
-| Author: REAN PROGRAMMING
+| Public Routes
 |--------------------------------------------------------------------------
 */
 
-    // User Login
+Route::middleware('throttle:login')->group(function () {
 
-    Route::post('/login', [AuthController::class, 'login']);
-    Route::post('/register', [AuthController::class, 'register']);
+    Route::post(
+        '/login',
+        [AuthController::class, 'login']
+    );
 
-    // Legacy Login (Optional)
+});
 
-    Route::post('/user-login', [AuthController::class, 'userloigin']);
+Route::middleware('throttle:register')->group(function () {
+
+    Route::post(
+        '/register',
+        [AuthController::class, 'register']
+    );
+
+    Route::post(
+        '/user-login',
+        [AuthController::class, 'userloigin']
+    );
+
+    Route::post(
+        '/store/register',
+        [StoreController::class, 'registerStore']
+    );
+
+});
+
+Route::middleware('throttle:public-combo')->group(function () {
+
+    Route::get(
+        '/public/combo/{id}',
+        [ComboController::class, 'publicCombo']
+    );
+
+});
+
+/*
+|--------------------------------------------------------------------------
+| Protected Routes
+|--------------------------------------------------------------------------
+*/
+
+Route::middleware('auth:api')->group(function () {
 
     /*
-
     |--------------------------------------------------------------------------
-
-    | Public Store Routes
-
+    | User Profile
     |--------------------------------------------------------------------------
-
     */
 
-    // Register New Store
+    Route::get(
+        '/profile',
+        [AuthController::class, 'profile']
+    );
 
-    Route::post('/store/register', [StoreController::class, 'registerstore']);
+    Route::post(
+        '/logout',
+        [AuthController::class, 'logout']
+    );
 
     /*
-
     |--------------------------------------------------------------------------
-
-    | Protected Routes
-
+    | Store Information
     |--------------------------------------------------------------------------
-
     */
 
-    Route::middleware('auth:api')->group(function () {
+    Route::get(
+        '/store/info/{branchcode}',
+        [StoreController::class, 'storeInfo']
+    );
 
-        // Get Product List
+    Route::put(
+        '/store/update/{branchcode}',
+        [StoreController::class, 'updateStore']
+    );
 
-        // Current User Information
+    Route::post(
+        '/store/upload-logo/{branchcode}',
+        [StoreController::class, 'uploadLogo']
+    );
 
-        Route::get('/profile', [AuthController::class, 'profile']);
+    /*
+    |--------------------------------------------------------------------------
+    | Products
+    |--------------------------------------------------------------------------
+    */
 
-        // Logout
+    Route::apiResource(
+        'products',
+        ProductController::class
+    );
 
-        Route::post('/logout', [AuthController::class, 'logout']);
+    /*
+    |--------------------------------------------------------------------------
+    | Customers
+    |--------------------------------------------------------------------------
+    */
+
+    Route::apiResource(
+        'customers',
+        CustomerController::class
+    );
+
+    /*
+    |--------------------------------------------------------------------------
+    | Settings
+    |--------------------------------------------------------------------------
+    */
+
+    Route::prefix('setting')->group(function () {
+
+        Route::get(
+            '/combo/{id}',
+            [ComboController::class, 'combo']
+        );
 
     });
 
-    Route::prefix('setting')->middleware('auth:api')->group(function () {
-        Route::get('combo/{id}', [ComboController::class, 'combo']);
 });
-
-
-
-

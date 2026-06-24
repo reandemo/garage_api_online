@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\User;
+use App\Models\BranchStore as SysBranch;
 use App\Helpers\ApiResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -34,14 +35,25 @@ class AuthService
             ->createToken('api-token')
             ->accessToken;
 
+        $branch = SysBranch::where('branchcode', $user->branchcode)->first();
+
         return ApiResponse::success([
             'token' => $token,
             'user' => [
                 'id' => $user->id,
                 'user_id' => $user->user_id,
-                'name' => $user->name,
+                'profile_id' => $user->profile_id,
                 'email' => $user->email,
+                'branchcode' => $user->branchcode,
+            ],
+            'branch' => [
+
+                'branchcode'  => $branch?->branchcode,
+                'branch_name' => $branch?->branch_name,
+                'system_id'   => $branch?->system_id,   
+
             ]
+
         ], 'Login successful');
     }
 
@@ -55,6 +67,7 @@ class AuthService
                 'name' => trim($data['name']),
                 'email' => strtolower(trim($data['email'])),
                 'password' => Hash::make($data['password']),
+                'isactive' => true
             ]);
 
             $token = $user
@@ -68,11 +81,16 @@ class AuthService
                 'user' => [
                     'id' => $user->id,
                     'user_id' => $user->user_id,
-                    'name' => $user->name,
+                    'profile_id' => $user->profile_id,
                     'email' => $user->email,
-                ]
-            ], 'Account created successfully', 201);
+                ],
 
+                'branch' => [
+                    'branchcode' => $user->branchcode,
+                    'branchname' => $user->email,
+                ]
+
+            ], 'Account created successfully', 201);
         } catch (\Exception $e) {
 
             DB::rollBack();

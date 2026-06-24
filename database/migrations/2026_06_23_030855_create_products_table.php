@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tbl_systems', function (Blueprint $table) {
-            $table->string('system_id', 50)->primary();
-            $table->string('name');
-            $table->string('status');
-            $table->boolean('isactive')->nullable();
-            $table->string('inputter')->nullable();
-            $table->softDeletes();
+        Schema::create('tbl_products', function (Blueprint $table) {
+            $table->id();
+            $table->string('product_code')->unique();
+            $table->string('product_name');
+            $table->decimal('price',18,2);
+            $table->integer('qty')->default(0);
             $table->timestamps();
         });
     }
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tbl_systems');
+        Schema::dropIfExists('products');
     }
 };

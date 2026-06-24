@@ -47,7 +47,7 @@ class BranchStore extends Model
 
         'comment',
 
-        'active',
+        'isactive',
 
         'slogan',
 

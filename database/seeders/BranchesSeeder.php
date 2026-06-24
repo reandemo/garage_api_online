@@ -4,52 +4,68 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\BranchStore as Branch;
-use App\Models\tbl_systems as System;
 
 class BranchesSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        $system = System::first();
-        
-        $branch = new Branch();
-        $branch->branchcode = '0101';
-        $branch->subofbranch = '0001';
-        $branch->short_name = 'CODING';
-        $branch->main_branch = '1';
-        $branch->slogan = 'Building software today that solves problems tomorrow';
-        $branch->branch_name = 'REAN-Programming Co., Ltd';
-        $branch->system_id = '1';
-        $branch->active = '1';
-        $branch->save();
+        Branch::updateOrCreate(
+            ['branchcode' => '0101'],
+            [
+                'subofbranch' => '0001',
+                'short_name' => 'COD',
+                'main_branch' => true,
+                'slogan' => 'Building software today that solves problems tomorrow',
+                'branch_name' => 'REAN-Programming Co., Ltd',
+                'system_id' => 'SYSTEM',
+                'phone' => '010 12 88 005',
+                'isactive' => true,
+            ]
+        );
 
-        $branch = new Branch();
-        $branch->branchcode = '0201';
-        $branch->subofbranch = '0002';
-        $branch->short_name = 'TC';
-        $branch->main_branch = '0';
-        $branch->slogan = 'Trust the hands that understand your vehicle.';
-        $branch->branch_name = 'TC AUTO';
-        $branch->phone = '010 322 022';
-        $branch->address = 'Phnom penh they Sen Sok';
-        $branch->system_id = '2';
-        $branch->active = '1';
-        $branch->save();
+        Branch::updateOrCreate(
+            ['branchcode' => '0201'],
+            [
+                'subofbranch' => '0002',
+                'short_name' => 'TC',
+                'main_branch' => false,
+                'slogan' => 'Trust the hands that understand your vehicle.',
+                'branch_name' => 'TC AUTO',
+                'phone' => '010 322 022',
+                'address' => 'Phnom Penh, Sen Sok',
+                'system_id' => 'GARAGE',
+                'isactive' => true,
+            ]
+        );
 
-        $branch = new Branch();
-        $branch->branchcode = '0301';
-        $branch->subofbranch = '0003';
-        $branch->short_name = 'SAVADA';
-        $branch->main_branch = '0';
-        $branch->slogan = 'Arrive as a guest, leave as family.';
-        $branch->branch_name = 'Savada Resort Kep Thmey';
-        $branch->phone = '010 322 022';
-        $branch->address = 'Bokor National Park, Kep Thmey, Cambodia';
-        $branch->system_id = '3';
-        $branch->active = '1';
-        $branch->save();
+        Branch::updateOrCreate(
+            ['branchcode' => '0301'],
+            [
+                'subofbranch' => '0003',
+                'short_name' => 'COFFEE',
+                'main_branch' => false,
+                'slogan' => 'Brewing Happiness in Every Cup.',
+                'branch_name' => 'JOIN Coffee',
+                'phone' => '010 322 022',
+                'address' => 'Tek Vil, Kampot, Cambodia',
+                'system_id' => 'COFFEE',
+                'isactive' => true,
+            ]
+        );
+
+        Branch::updateOrCreate(
+            ['branchcode' => '0401'],
+            [
+                'subofbranch' => '0004',
+                'short_name' => 'SAVADA',
+                'main_branch' => false,
+                'slogan' => 'Arrive as a guest, leave as family.',
+                'branch_name' => 'SAVADA Kep Thmey',
+                'phone' => '010 322 022',
+                'address' => 'Bokor National Park, Kep thmey, Cambodia',
+                'system_id' => 'RESORT',
+                'isactive' => false,
+            ]
+        );
     }
 }

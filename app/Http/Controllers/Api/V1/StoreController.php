@@ -2,56 +2,70 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Helpers\ApiResponse;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreRegisterRequest;
 use App\Models\BranchStore;
 use App\Services\StoreService;
+use App\Services\BranchLogoService;
+use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Storage;
 
 class StoreController extends Controller
 {
-    public function __construct(
-        private StoreService $storeService
-    ) {}
+    /**
+     * Store Service
+     */
+    private StoreService $storeService;
 
     /**
-     * Dashboard Test
+     * Branch Logo Service
+     */
+    private BranchLogoService $logoService;
+
+    /**
+     * Constructor
+     */
+    public function __construct(
+        StoreService $storeService,
+        BranchLogoService $logoService
+    ) {
+        $this->storeService = $storeService;
+        $this->logoService  = $logoService;
+    }
+
+    /**
+     * Dashboard
      */
     public function index()
     {
         $totalBranches = BranchStore::count();
 
         $branches = BranchStore::latest()
-            ->take(10)->where('isactive', true)
+            ->where('isactive', true)
+            ->take(10)
             ->get();
 
         return view(
             'welcome',
-            compact(
-                'branches',
-                'totalBranches'
-            )
+            compact('branches', 'totalBranches')
         );
     }
 
     /**
      * Register Store
      */
-    public function registerStore(
-        StoreRegisterRequest $request
-    ) {
-        return $this->storeService
-            ->registerStore(
-                $request->validated()
-            );
+    public function registerStore(StoreRegisterRequest $request)
+    {
+        return $this->storeService->registerStore(
+            $request->validated()
+        );
     }
 
     /**
-     * Get Store Information
+     * Store Information
      */
-    public function storeInfo($branchcode)
+    public function storeInfo(string $branchcode)
     {
         try {
 
@@ -61,194 +75,65 @@ class StoreController extends Controller
             )->first();
 
             if (!$branch) {
-
-                return response()->json([
-                    'success' => false,
-                    'message' => 'Store not found.'
-                ], 404);
+                return ApiResponse::error(
+                    'Store not found.',
+                    null,
+                    404
+                );
             }
 
-            return response()->json([
-                'success' => true,
-                'data' => $branch
-            ]);
+            return ApiResponse::success(
+                $branch,
+                'Store information.'
+            );
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
 
-            return response()->json([
-                'success' => false,
-                'message' => $e->getMessage()
-            ], 500);
+            return ApiResponse::error(
+                $e->getMessage(),
+                null,
+                500
+            );
         }
     }
 
     /**
-     * Update Store Information
+     * Update Store
      */
     public function updateStore(
         Request $request,
-        $branchcode
+        string $branchcode
     ) {
-        $validator = Validator::make(
-            $request->all(),
-            [
-                'branch_name' => 'required|max:200',
-                'phone' => 'nullable|max:50',
-                'address' => 'nullable|max:255',
-                'slogan' => 'nullable|max:255',
-                'short_name' => 'nullable|max:50'
-            ]
+        return $this->storeService->updateStore(
+            $request,
+            $branchcode
         );
-
-        if ($validator->fails()) {
-
-            return response()->json([
-                'success' => false,
-                'errors' => $validator->errors()
-            ], 422);
-        }
-
-        try {
-
-            $branch = BranchStore::where(
-                'branchcode',
-                $branchcode
-            )->first();
-
-            if (!$branch) {
-
-                return response()->json([
-                    'success' => false,
-                    'message' => 'Store not found.'
-                ], 404);
-            }
-
-            $branch->update([
-
-                'branch_name' => trim($request->branch_name),
-
-                'phone' => trim($request->phone),
-
-                'address' => trim($request->address),
-
-                'slogan' => trim($request->slogan),
-
-                'short_name' => trim($request->short_name),
-
-                'updated_by' => auth()->user()->user_login ?? 'system'
-            ]);
-
-            return response()->json([
-
-                'success' => true,
-
-                'message' => 'Store updated successfully.'
-
-            ]);
-
-        } catch (\Exception $e) {
-
-            return response()->json([
-
-                'success' => false,
-
-                'message' => $e->getMessage()
-
-            ], 500);
-        }
     }
 
     /**
-     * Upload Store Logo
+     * Upload Branch Logo
      */
     public function uploadLogo(
         Request $request,
-        $branchcode
+        string $branchcode
     ) {
-        $validator = Validator::make(
-            $request->all(),
-            [
-                'logo' => 'required|image|mimes:jpg,jpeg,png|max:2048'
-            ]
+        $result = $this->logoService->upload(
+            $request,
+            $branchcode
         );
 
-        if ($validator->fails()) {
+        if (!$result['success']) {
 
-            return response()->json([
-                'success' => false,
-                'errors' => $validator->errors()
-            ], 422);
-        }
-
-        try {
-
-            $branch = BranchStore::where(
-                'branchcode',
-                $branchcode
-            )->first();
-
-            if (!$branch) {
-
-                return response()->json([
-                    'success' => false,
-                    'message' => 'Store not found.'
-                ], 404);
-            }
-
-            if (
-                $branch->logo &&
-                Storage::disk('public')->exists($branch->logo)
-            ) {
-                Storage::disk('public')
-                    ->delete($branch->logo);
-            }
-
-            $file = $request->file('logo');
-
-            $fileName =
-                $branchcode .
-                '_' .
-                time() .
-                '.' .
-                $file->getClientOriginalExtension();
-
-            $path = $file->storeAs(
-                'branch-logo',
-                $fileName,
-                'public'
+            return ApiResponse::error(
+                $result['message'],
+                $result['data'],
+                $result['status']
             );
-
-            $branch->logo = $path;
-
-            $branch->save();
-
-            return response()->json([
-
-                'success' => true,
-
-                'message' => 'Logo uploaded successfully.',
-
-                'data' => [
-
-                    'logo' => $path,
-
-                    'url' => asset(
-                        'storage/' . $path
-                    )
-
-                ]
-
-            ]);
-
-        } catch (\Exception $e) {
-
-            return response()->json([
-
-                'success' => false,
-
-                'message' => $e->getMessage()
-
-            ], 500);
         }
+
+        return ApiResponse::success(
+            $result['data'],
+            $result['message']
+        );
     }
 }

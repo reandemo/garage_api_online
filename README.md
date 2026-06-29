@@ -1,52 +1,146 @@
-# 🚀 REAN-PRO
+# 🚀 REAN-PRO API
 
-### Learn • Build • Share
+> **Learn • Build • Share**
 
-Laravel API Tutorials & Real-World Projects
+A modular, enterprise-ready Laravel API template designed for multiple
+business domains.
 
-</div>
+## Vision
 
----
+Build one reusable Laravel API that powers:
 
-## 👨‍💻 About Me
+-   🚗 Garage Management
+-   ☕ Coffee POS
+-   🏥 Hospital Management
+-   🏝 Resort Management
+-   📦 Inventory
+-   💰 Accounting
+-   👨‍💼 HR
+-   🛒 E-Commerce
 
-Hi, I'm Bong Map 👋
+## Architecture
 
-I create educational content about:
+``` text
+app/
+├── Common/
+├── Modules/
+│   ├── Auth/
+│   ├── System/
+│   ├── Garage/
+│   ├── Coffee/
+│   ├── Hospital/
+│   └── Resort/
+└── Providers/
+```
 
-✅ Laravel API  
-✅ PHP Development  
-✅ Authentication System  
-✅ POS System  
-✅ MySQL Database  
-✅ Vue.js  
-✅ Backend Development  
+## Module Structure
 
----
+``` text
+Controllers/
+Actions/
+Services/
+Repositories/
+Interfaces/
+Models/
+Requests/
+Resources/
+DTOs/
+Policies/
+Events/
+Listeners/
+Routes/
+Database/
+Seeders/
+Factories/
+Tests/
+```
 
-# 📺 Content Platforms
+## Request Flow
 
-| Platform | Link |
-|---|---|
-| 🌍 Website | [REAN-PRO Website](https://reanprogramming.com?utm_source=chatgpt.com) |
-| 💻 GitHub | [REAN Programming GitHub](https://github.com/reanprogramming?utm_source=chatgpt.com) |
-| 🇺🇸 YouTube English | [JoinCoder YouTube Channel](https://www.youtube.com/@joincoder?utm_source=chatgpt.com) |
-| 🇰🇭 YouTube Khmer | [REAN Programming YouTube Channel](https://www.youtube.com/@reanprogramming?utm_source=chatgpt.com) |
-| 📘 Facebook | [REAN Programming Facebook](https://www.facebook.com/reanprogramming?utm_source=chatgpt.com) |
-| 📢 Telegram | [REAN Documentary Telegram](https://t.me/reandocumentary?utm_source=chatgpt.com) |
-| 🎵 TikTok | [REAN Programming TikTok](https://www.tiktok.com/@reanprogramming?utm_source=chatgpt.com) |
+``` text
+Client
+ ↓
+Route
+ ↓
+Controller
+ ↓
+Action
+ ↓
+Service
+ ↓
+Repository
+ ↓
+Model
+ ↓
+Database
+```
 
----
+## Common Modules
 
-## 📦 Featured Topics
+-   Authentication
+-   Users
+-   Roles
+-   Permissions
+-   Branches
+-   Settings
+-   Upload
+-   Audit Log
+-   Notifications
 
-```txt
-Laravel 11 API
-Laravel Passport
-Laravel Sanctum
-Authentication API
-RESTful API
-POS System
-Inventory System
-Hospital Management System
-Vue.js Frontend
+## Business Modules
+
+### Garage
+
+-   Vehicles
+-   Repairs
+-   Customers
+-   Invoices
+-   Payments
+
+### Coffee
+
+-   Products
+-   Orders
+-   Tables
+-   Payments
+
+### Hospital
+
+-   Patients
+-   Doctors
+-   Appointments
+
+### Resort
+
+-   Rooms
+-   Bookings
+-   Guests
+
+## API Version
+
+-   /api/v1
+-   /api/v2
+
+## Tech Stack
+
+-   Laravel 12+
+-   PHP 8.3+
+-   MySQL
+-   Sanctum
+-   Repository Pattern
+-   Service Pattern
+-   Action Pattern
+-   DTO
+
+## Author
+
+**Bong Map**
+
+Learn • Build • Share
+
+-   Website: https://reanprogramming.com
+-   GitHub: https://github.com/reanprogramming
+-   YouTube (EN): https://youtube.com/@joincoder
+-   YouTube (KH): https://youtube.com/@reanprogramming
+-   Telegram: https://t.me/reandocumentary
+-   TikTok: https://tiktok.com/@reanprogramming
